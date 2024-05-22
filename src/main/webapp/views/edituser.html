@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Usuario</title>
+    <link rel="stylesheet" href="../css/edituser.css">
+</head>
+<body>
+    <h1>Editar Usuario</h1>
+    <div class="container">
+
+        <form id="register-form">
+            <input type="text" id="Usuario" name="Usuario" placeholder="Usuario" required>
+            <br>
+            <label for="documento">Tipo:</label>
+            <select id="documento" name="documento">
+            <option value="cedula">Cédula</option>
+            <option value="pasaporte">Pasaporte</option>
+            <option value="otro">Otro</option>
+            </select> <br>
+            <input type="document" id="documento" name="documento" placeholder="N° Documento" required>
+            <br>
+            <input type="password" id="password" name="password" placeholder="Contraseña" required>
+             <br>
+            <input type="email" id="email" name="email" placeholder="Email" required>
+            <br>
+            <input type="tel" id="phone" name="phone" placeholder="N° de Telefono" required>
+        </form>
+    </div>
+        <button type="submit">Guardar Cambios</button>
+    </form>
+
+    <!-- Alerta de actualización -->
+    <div class="alert" id="updateAlert">
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">×</span>
+        ¡Datos actualizados correctamente!
+    </div>
+
+    <script src="formulario.js"></script>
+</body>
+</html>
