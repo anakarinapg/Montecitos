@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +8,7 @@
 <body>
     <div class="container">
         <h1>Registro de Usuario</h1>
-        <form id="register-form">
+        <form id="register-form" action="register.jsp" method="post"></form>
             <input type="text" id="Usuario" name="Usuario" placeholder="Usuario" required>
             
             <input type="document" id="documento" name="documento" placeholder="N° Documento" required>
