@@ -1,0 +1,18 @@
+
+<web-app >
+  <display-name>Archetype Created Web Application</display-name>
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+
+<servlet>
+  <servlet-name>controller.UsuarioController</servlet-name> 
+  <servlet-class>controller.UsuarioController</servlet-class>
+</servlet>
+
+<servlet-mapping>
+  <servlet-name>controller.UsuarioController</servlet-name>
+  <url-pattern>/UsuarioController</url-pattern>
+
+</servlet-mapping>
+</web-app>
