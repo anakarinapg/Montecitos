@@ -19,7 +19,7 @@
 
             <input type="tel" id="phone" name="phone" placeholder="N° de Telefono" required>
             
-            <button type="submit" onclick="showSuccessMessage(); window.location.href = './login.html'">Registrarse</button>
+            <button type="submit" name="registrarse" onclick="showSuccessMessage(); window.location.href = './login.html'">Registrarse</button>
         </form>
     </div>
 

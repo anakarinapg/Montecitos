@@ -1,57 +1,82 @@
 package controller;
 import View.UsuarioView;
+import model.Usuario.UsuarioVo;
 import Usuario.UsuarioDao;
-public class UsuarioController {
-    private Usuario usuarioModel;
-    private UsuarioView usuarioView;
+import Usuario.UsuarioVo;
+import java.io.IOException;
+
+import javax.servlet.annotation.WebServlet;
+
+
+
+
+import org.codehaus.jackson.map.ObjectMapper;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+
+public class UsuarioController extends HttpServlet {
+    private UsuarioVo usuarioVo;
     private UsuarioDao usuarioDAO;
 
-    public UsuarioController(Usuario usuarioModel, UsuarioView usuarioView) {
-        this.usuarioModel = usuarioModel;
-        this.usuarioView = usuarioView;
-    }
-    public UsuarioController(UsuarioDao usuarioDAO) {
+    // Constructor que recibe un UsuarioDao y un UsuarioVo como parámetros
+    public UsuarioController(UsuarioDao usuarioDAO, UsuarioVo usuarioVo) {
         this.usuarioDAO = usuarioDAO;
+        this.usuarioVo = usuarioVo;
     }
-    
+
+    // Método para manejar las solicitudes GET
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("Entró al DoGet");
-        String a=req.getParameter("accion");
+        String a = req.getParameter("accion");
 
-        switch(a){
-            case "abrirForm":
-                abrirForm(req,resp);
-            break;
-            case "listar":
-                listar(req,resp);
-            break;
-        }
+        // Crear una instancia del modelo de usuario y obtener el usuario
+        UserModel model = new UserModel();
+        User user = model.getUser();
+        // Convertir el usuario a formato JSON y escribirlo en el flujo de salida de la respuesta
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.writeValue(response.getOutputStream(), user);
     }
 
+    // Método para manejar las solicitudes POST
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("Entró al DoPost");
-        String a=req.getParameter("accion");
+        String a = req.getParameter("accion");
 
-        switch(a){
+        switch (a) {
             case "add":
-                add(req,resp);
-            break;
+                add(req, resp); // Llamar al método add() para manejar la acción "add"
+                break;
         }
-    }
-
-public void actualizarUsuario(String id, String nuevoNombre, String nuevoEmail) {
-    usuarioDAO.actualizarUsuario(id, nuevoNombre, nuevoEmail);
-}
-
-    // Métodos para actualizar y obtener información del usuario
-    // ...
-    
-    public void actualizarVista() {
-        usuarioView.mostrarUsuario(usuarioModel);
     }
+
+    // Método para actualizar un usuario
+    public void updateUsuario(String id, String nuevoNombre, String nuevoEmail) {
+        // Aquí deberías utilizar el usuarioDAO para actualizar el usuario en la base de datos
+    }
+
+    // Método para obtener un usuario por su ID
     public Usuario obtenerUsuarioPorId(int id) {
         return usuarioDAO.obtenerUsuarioPorId(id);
-    }
+    }
+
+    // Método para abrir un formulario
+    private void abrirForm(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.getRequestDispatcher("views/login.jsp").forward(req, resp);
+        System.out.println("El formulario ha sido abierto");
+    }
+
+    // Método para listar usuarios
+    private void listar(HttpServletRequest req, HttpServletResponse resp) {
+        // Implementa el método para listar usuarios
+    }
+
+    // Método para agregar un nuevo usuario
+    private void add(HttpServletRequest req, HttpServletResponse resp) {
+        // Implementa el método para agregar un nuevo usuario
+    }
 }
