@@ -76,7 +76,17 @@ public class UsuarioController extends HttpServlet {
     }
 
     // Método para agregar un nuevo usuario
-    private void add(HttpServletRequest req, HttpServletResponse resp) {
-        // Implementa el método para agregar un nuevo usuario
+     private void add(HttpServletRequest req, HttpServletResponse resp) {
+
+        if(req.getParameter("descripcion")!=null){
+            usuarioVo.setCorreo((req.getParameter("email")));
+        }
+        
+        try {
+            usuarioDAO.insertUsuario(usuarioVo);
+            System.out.println("Registro insertado correctamente");
+        } catch (Exception e) {
+            System.out.println("Error en la inserción del registro "+e.getMessage().toString());
+        }
     }
 }
